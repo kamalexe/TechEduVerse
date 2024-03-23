@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg my-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Add New Lesson</h2>
+    <form action="{% url 'add_lesson' %}" method="post"   class="needs-validation mt-3" novalidate enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="image" class="form-label">Image:</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+            <div class="invalid-feedback">
+                Please upload an image for the category.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="id_Course" class="form-label">Course</label>
+            <select id="id_Course" name="Course" class="form-select">
+                {% for course in courses %}
+                <option value="{{ course.id }}">{{ course.Title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="id_Title" class="form-label">Title</label>
+            <input type="text" id="id_Title" name="Title" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="id_Content" class="form-label">Content</label>
+            <textarea id="id_Content" name="Content" class="form-control" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="id_Order" class="form-label">Order</label>
+            <input type="number" id="id_Order" name="Order" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="id_VideoURL" class="form-label">Video URL</label>
+            <input type="text" id="id_VideoURL" name="videoURL" class="form-control" placeholder="https://">
+            <div class="invalid-feedback">
+                Please provide a valid URL.
+            </div>
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>

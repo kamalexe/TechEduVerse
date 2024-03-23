@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg my-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Add New Course</h2>
+          
+            <form action="{% url 'add_course_submit' %}" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image:</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    <div class="invalid-feedback">
+                        Please upload an image for the category.
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid course title.
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    <div class="invalid-feedback">
+                        Please provide a description for the course.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">category:</label>
+                    <select class="form-select" id="category" name="category" required>
+                        {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.Name }}---{{ category.id }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a course level.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="level" class="form-label">Level:</label>
+                    <select class="form-select" id="level" name="level" required>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a course level.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="language" class="form-label">Language:</label>
+                    <input type="text" class="form-control" id="language" name="language" required>
+                    <div class="invalid-feedback">
+                        Please specify the course language.
+                    </div>
+                </div>
+                
+                <!-- Instructor field might be managed differently depending on your app's logic -->
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+</div>
+</div>

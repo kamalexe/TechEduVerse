@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<title>{% block title %}Main Couser{% endblock title %}</title>
+<style>
+  .card-img-overlay {
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+  }
+  .card-title, .card-text {
+    color: #fff; /* White text for better contrast */
+  }
+  .card-title {
+    margin-bottom: 0.5rem;
+  }
+  .card-text {
+    font-size: 1rem; /* Adjust the font size for better readability */
+  }
+  .lead {
+    color: #6c757d; /* Bootstrap's default lead text color for emphasis */
+  }
+  h3 {
+    font-weight: 500; /* Semi-bold for titles */
+  }
+  .card {
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Smooth transition for hover effects */
+  }
+  .card:hover {
+    transform: scale(1.05); /* Slightly scale up cards on hover */
+    box-shadow: 0 0 20px rgba(0,0,0,0.2); /* Add shadow for depth */
+  }
+  .card-decks-scrollable {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    display: flex; /* Ensures the children (card-deck) are in a flexbox layout */
+    flex-wrap: nowrap; /* Prevents wrapping of items */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.card-decks-scrollable::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+hr {
+    margin: 1rem 2rem;
+    color: inherit;
+    background-color: currentColor;
+    border: 0; /* Changed from 'border: 1;' to remove default border */
+    border-top: 1px solid; /* Explicitly define the border-top to make it visible */
+    opacity: 0.25;
+}
+
+</style>
+<link rel="stylesheet" href="{% static 'courses/styles.css' %}">
+
+{% include "courses/navbar.html" %}
+{% include "courses/carousel.html" %}
+{% include "courses/category_list.html" %}
+<hr>
+{% include "courses/course_list.html" %}
+<hr>
+{% include "courses/enrolled_course_list.html" %}
+
+{% include "about.html" %}
+
+{% endblock %}

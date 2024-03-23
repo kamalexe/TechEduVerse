@@ -1,0 +1,53 @@
+{% extends 'base.html' %} <!-- Adjust the extend based on your base template -->
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    .scrollable-list {
+        max-height: 500px;
+        overflow-y: auto;
+        scrollbar-width: none; /* Firefox */
+    }
+    
+    .scrollable-list::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    .card-title {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+  </style>
+<div class="row d-flex align-items-center">
+    <div class="col-md-4 scrollable-list ">
+        {% include "courses/lessons_list.html" %}
+    </div>
+   
+    <div class="col-md-8 scrollable-list ">
+        <div class="col container mt-5">
+            <div class="card " style="border: none;">
+                <div class="card-body">
+                    <div class="row ">
+                    <div class="col ">
+                    <h1 class="card-title">{{ course.Title }}</h1>
+                    <small class="card-subtitle mb-2 text-muted">Level: {{ course.Level }}</small>
+                    <small class="card-text text-muted"><strong>Language:</strong> {{ course.Language }}</small>
+                    <br>
+                    <small class="card-text text-muted"><strong>Created At:</strong> {{ course.CreatedDate|date:"F d, Y" }}</small><br>
+                    <small class="card-text text-muted"><strong>Last Updated:</strong> {{ course.UpdatedDate|date:"F d, Y H:i" }}</small>
+                    <p class="card-text"><strong>Description:</strong> {{ course.Description }}</p>
+                    {% comment %} <a href="{% url 'course_lessons_list' course.id  %}" class="btn btn-primary">View lessons List</a> {% endcomment %}
+                    {% comment %} <a href="{% url 'update_course' course.id  %}" class="btn btn-primary">Update</a> {% endcomment %}
+                    {% comment %} <a href="{% url 'courses_list' %}" class="btn btn-primary">Back Button</a> {% endcomment %}
+                    </div>
+                    <div class="col rounded border" style="height: 300px; width: fit-content;background-image: url('http://127.0.0.1:8000/media/{{ course.Image }}'); background-size: cover; background-position: center;">
+                        {% comment %} <img  style="height:10px" src="http://127.0.0.1:8000/media/{{ course.Image }}" alt="{{ course.Image }}"> {% endcomment %}
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+{% endblock %}

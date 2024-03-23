@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Update Exercise</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="lesson_id">Lesson:</label>
+            <select name="lesson_id" id="lesson_id" class="form-control">
+                {% for lesson in lessons %}
+                <option value="{{ lesson.id }}" {% if lesson.id == exercise.Lesson.id %}selected{% endif %}>{{ lesson.Title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" class="form-control">{{ exercise.Description }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="solution">Solution:</label>
+            <input type="text" name="solution" id="solution" class="form-control" value="{{ exercise.Solution }}">
+        </div>
+        <div class="d-grid gap-2 mt-2">
+        <button type="submit" href="{% url 'update_exercise' exercise.id %}" class="btn btn-primary">Update Exer</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

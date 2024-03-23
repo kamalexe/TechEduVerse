@@ -1,0 +1,49 @@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'dash_board' %}">
+            <i class="bi bi-speedometer2"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_course_view' %}">
+            <i class="bi bi-plus-circle-fill"></i> Add Course
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  href="{% url 'add_category_view' %}">
+            <i class="bi bi-tag-fill"></i> Add Category
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_lession_view' %}">
+            <i class="bi bi-book-fill"></i> Add Lesson
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'add_exercise_view' %}">
+            <i class="bi bi-pencil-square"></i> Add Exercise
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'edit_profile' %}">
+            <i class="bi bi-pencil-square"></i> Edit Profile
+          </a>
+        </li>
+        <li class="nav-item">
+          <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+          <button type="submit" class="nav-link" >
+            <i class="bi bi-box-arrow-right"></i> Log Out
+          </button>
+          </form>
+        </li>
+        <!-- Add more sidebar items as needed -->
+      </ul>
+    </div>
+  </div>
+  

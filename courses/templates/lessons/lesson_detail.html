@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .rounded-border {
+        border-radius: 20px; /* Adds curved borders */
+    }
+
+    .custom-text-style {
+        font-family: 'Arial', sans-serif; /* Example font */
+        color: #007bff; /* This will now be used for specific elements, not all text */
+    }
+
+    .heading-color {
+        color: #34495e; /* Modern, deep blue color for headings */
+    }
+
+    .paragraph-color {
+        color: #7f8c8d; /* Soft, grey color for paragraphs, providing a modern and less stark contrast */
+    }
+
+    .custom-button {
+        border-color: #3498db; /* Bright blue border color */
+        color: #fff; /* Text color */
+        background-color: #3498db; /* Bright blue background color */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
+    }
+
+    .custom-button:hover {
+        background-color: #2980b9; /* Darker shade of blue on hover */
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Exercises Section in a Scrollable Sidebar -->
+        <div class="col-lg-4 mb-5">
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+
+            <div class="sticky-top" style="top: 20px;">
+                <div class="exercises-section rounded-border">
+                    <h3 class="mb-3 text-primary heading-color">Exercises</h3>
+                    {% if exercises %}
+                        <div class="accordion shadow-sm rounded-border" id="exercisesAccordion">
+                            {% for exercise in exercises %}
+                                <div class="accordion-item rounded-border">
+                                    <h2 class="accordion-header heading-color" id="heading{{ forloop.counter }}">
+                                        <button class="accordion-button collapsed rounded-border custom-text-style" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                                            Exercise {{ forloop.counter }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#exercisesAccordion">
+                                        <div class="accordion-body paragraph-color">
+                                           
+                                            <strong>Description:</strong> {{ exercise.Description|linebreaks }}
+                                            <a class="btn btn-outline-primary mt-3 custom-button" href="{% url 'update_exercise' exercise.id %}">Update Exercise</a>
+                                         
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No exercises available for this lesson.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Column for Video and Lesson Details -->
+        <div class="col-lg-8">
+            <!-- Video Embed with Shadow for Depth -->
+            <h3 class="mb-3 custom-text-style heading-color">{{ lesson.Course.Title }}</h3>
+          
+            <div class="ratio ratio-16x9 shadow mb-4 rounded-border">
+                <iframe class="embed-responsive-item" src="{{ lesson.VideoURL }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <!-- Lesson Details with Enhanced Card Styling -->
+            <div class="card border-0 mb-4 shadow rounded-border">
+                <div class="card-body custom-text-style" style="padding: 1px 28px; padding: 15px, 38px; max-height: 200px; overflow-y: auto; scrollbar-width: none;">
+                    <h2 class="lesson-title card-title heading-color">{{ lesson.Title }}</h2>
+                    <p class="lesson-content card-text paragraph-color">{{ lesson.Content|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if lesson_completed %}
+    <!-- Display the completion date if the lesson is completed -->
+    <p><strong>Completion Date:</strong> {{ progress.CompletionDate|date:"F j, Y, P" }}</p>
+{% else %}
+    <!-- Show a button to mark the lesson as completed if it's not yet completed -->
+    <form action="{% url 'mark_lesson_completed' course_id=course.id lesson_id=lesson.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success mt-3">Mark as Completed</button>
+    </form>
+{% endif %}
+</div>
+
+{% endblock %}

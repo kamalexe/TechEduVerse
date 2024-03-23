@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ lesson.Title }}</h2>
+    <div>
+        <strong>Course:</strong> {{ lesson.Course.Title }}
+    </div>
+    <div>
+        <strong>Content:</strong> {{ lesson.Content|linebreaks }}
+    </div>
+    <div>
+        <strong>Order:</strong> {{ lesson.Order }}
+    </div>
+    <a href="{% url 'lessons_list' %}" class="btn btn-secondary mt-3">Back to Lessons</a>
+</div>
+{% endblock %}

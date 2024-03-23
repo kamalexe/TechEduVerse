@@ -1,0 +1,40 @@
+<style>
+    .profile-pic {
+        /* Set the size of the profile picture */
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        position: relative;
+        /* Make it round */
+        border-radius: 50%;
+    }
+    .profile-pic img {
+        /* Make the image cover the container fully */
+        width: 100%;
+        height: auto;
+        object-fit: cover; 
+    }
+</style>
+<div class="container mt-4">
+    <h2>Lessons List</h2>
+    <ul class="list-group mt-3">
+        {% for lesson in lessons %}
+        {% comment %} <li class="list-group-item d-flex align-items-start flex-column"> {% endcomment %}
+            <div class="d-flex align-items-start flex-column m-2 bg-light px-4 py-2 rounded border ">
+            {% comment %} <img src="http://127.0.0.1:8000/media/{{ lesson.Image }}" alt="{{ lesson.Title }}" class="mr-3" style="width: 100px; height: 60px; object-fit: cover;"> {% endcomment %}
+            <div class="container d-flex justify-content-center align-items-center p-0">
+                <div class="d-flex align-items-center col-4 profile-pic rounded-circle pe-0">
+                    <img src="http://127.0.0.1:8000/media/{{ lesson.Image }}" alt="{{ lesson.Title }}">
+                </div> 
+                <h5 class=" col-8  ms-2 ps-0" style="font-size: 1.3rem;">{{ lesson.Title|truncatewords:6 }}</h5>
+            </div>
+           
+            <p class="font-weight-light font-italic">{{ lesson.Content|truncatewords:10 }}</p>
+            <a href="{% url 'lesson_detail' lesson.id %}" class="btn btn-primary btn-sm">View Details</a>
+        </div>
+        {% comment %} </li> {% endcomment %}
+        {% empty %}
+        <li class="list-group-item">No lessons available. {{lessons}}</li>
+        {% endfor %}
+    </ul>
+</div>

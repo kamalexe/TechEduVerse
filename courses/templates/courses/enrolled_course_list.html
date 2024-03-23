@@ -1,0 +1,62 @@
+<div class="card-sliders mt-4" id="yourCourse">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md">
+                <h3>Your Course</h3>
+                <p class="lead">Embrace the present with our Mindfulness for Well-being course.</p>
+                
+                <div class="row">
+                    <div class="col-lg">
+                        
+                            <div class="card-deck  d-flex">
+                                {% for course in enrolled_courses %}
+                                <a href="{% url 'course_detail' course_id=course.id %}">
+                                <style>
+                                    .card {
+                                      width: 18rem; /* Adjust based on your layout */
+                                      height: 200px; /* Fixed height */
+                                      overflow: hidden; /* Ensures no content spills out */
+                                      position: relative; /* For positioning the overlay */
+                                      border-radius: 0.5rem; /* Optional: Rounded corners */
+                                    }
+                                    .card-img {
+                                      height: 100%; /* Make image fill the card height */
+                                      object-fit: cover; /* Cover the container without losing aspect ratio */
+                                      border-radius: 0.5rem; /* Optional: Match card's border-radius */
+                                    }
+                                    .card-img-overlay {
+                                      position: absolute; /* Overlay positioning */
+                                      bottom: 0; /* Align to the bottom */
+                                      left: 0; /* Align to the left */
+                                      right: 0; /* Align to the right */
+                                      background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+                                      color: #fff; /* Text color */
+                                      padding: 1rem; /* Padding inside the overlay */
+                                    }
+                                    .card-title, .card-text {
+                                      color: #fff; /* Ensures text is visible against the dark overlay */
+                                    }
+                                  </style>
+                                 
+                                  <div class="card m-2" >
+                                      <img class="card-img object-fit-cover border rounded" src="http://127.0.0.1:8000/media/{{ course.Image }}" alt="Card image">
+                                      <div class="card-img-overlay d-flex align-items-end p-3">
+                                          <div>
+                                              <h5 class="card-title">{{ course.Title|truncatewords:3 }}</h5>
+                                              <p class="card-text">{{ course.Description|truncatewords:5 }}</p>
+                                              <!-- Add more course details as needed -->
+                                          </div>
+                                      </div>
+                                  </div>
+                                  </a>
+                                {% empty %}
+                                    <p>No courses available.</p>
+                                {% endfor %}
+                            </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

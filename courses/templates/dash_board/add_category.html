@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg my-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Add New Category</h2>
+            <form action="{% url 'add_category' %}" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image:</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    <div class="invalid-feedback">
+                        Please upload an image for the category.
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid category name.
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                    <div class="invalid-feedback">
+                        Please provide a description for the category.
+                    </div>
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</div>

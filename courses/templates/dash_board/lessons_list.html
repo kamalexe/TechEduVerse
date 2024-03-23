@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Lessons List</h2>
+    <ul class="list-group mt-3">
+        {% for lesson in lessons %}
+        <li class="list-group-item">
+            <h5>{{ lesson.Title }}</h5>
+            <p>{{ lesson.Content|truncatewords:20 }}</p>
+            <a href="{% url 'lesson_detail' lesson.id %}" class="btn btn-primary btn-sm">View Details</a>
+            <a href="{% url 'update_lesson' lesson.id %}" class="btn btn-primary btn-sm">Update Details</a>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No lessons available. {{lessons}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

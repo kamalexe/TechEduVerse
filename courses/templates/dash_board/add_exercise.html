@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-lg my-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Add Exercise</h2>
+<form method="post" action="{% url 'add_exercise' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="lesson_id">Lesson</label>
+        <select id="lesson_id" name="lesson_id" class="form-select" required>
+            {% for lesson in lessons %}
+            <option value="{{ lesson.id }}">{{ lesson.Title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="solution">Solution</label>
+        <textarea class="form-control" id="solution" name="solution" required></textarea>
+    </div>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    {% comment %} <button type="submit" class="btn btn-primary">Submit</button> {% endcomment %}
+</form>
+    </div>
+</div>
+</div>
+</div>
+</div>

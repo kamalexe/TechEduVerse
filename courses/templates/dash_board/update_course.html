@@ -1,0 +1,35 @@
+{% extends 'base.html' %}  <!-- Assumes you have a base template -->
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Update Course</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ course.Title }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required>{{ course.Description }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="level" class="form-label">Level:</label>
+            <input type="text" class="form-control" id="level" name="level" value="{{ course.Level }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="language" class="form-label">Language:</label>
+            <input type="text" class="form-control" id="language" name="language" value="{{ course.Language }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category:</label>
+            <select class="form-select" id="category" name="category" required>
+                {% for category in categories %}
+                <option value="{{ category.id }}" {% if course_category == category.id %}selected{% endif %}>{{ category.Name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}

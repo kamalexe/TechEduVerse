@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Anta';
+    src: url('/static/courses/fonts/Anta-Regular.ttf') format('truetype');
+     
+    font-weight: normal;
+    font-style: normal;
+}
+
+.navbar-brand {
+    font-family: 'Anta', sans-serif;
+}

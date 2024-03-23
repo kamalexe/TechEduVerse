@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    {% include "dash_board/dash_board_sidebar.html" %}
+   
+ <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2 text-capitalize">Weclome {{ user.first_name }} {{ user.last_name }}</h1>
+        {% if user_info %}
+        <div>
+          <img src="http://127.0.0.1:8000/media/course_images/profileIcon.png" alt="Profile Image" style="width: 100px; height: auto;">
+{% comment %} 
+          <p>Username: {{ user_info.username }}</p>
+        <p>Email: {{ user_info.email }}</p> {% endcomment %}
+        </div>
+        <!-- Display other user details as needed -->
+        {% else %}
+        <p>You are not logged in.</p>
+        {% endif %}
+      </div>
+      
+  
+      
+      {% if active_content == 'dashboard' %}
+      {% include "dash_board/add_course.html" %}
+      {% elif active_content == 'over_view' %}
+      {% include "dash_board/over_view.html" %}
+    {% elif active_content == 'add_course' %}
+      {% include "dash_board/add_course.html" %}
+    {% elif active_content == 'add_category' %}
+      {% include "dash_board/add_category.html" %}
+    {% elif active_content == 'add_lesson' %}
+      {% include "dash_board/add_lesson.html" %}
+    {% elif active_content == 'add_exercise' %}
+      {% include "dash_board/add_exercise.html" %}
+    {% else %}
+      <p>Select an option from the sidebar.</p>
+    {% endif %}
+    </main>
+    <!-- Main content area in dash_board_base.html -->
+{% comment %} <div id="dynamicContent"></div> {% endcomment %}
+
+  </div>
+</div>
+
+
+{% endblock content %}

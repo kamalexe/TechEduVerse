@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}  <!-- Assumes you have a base template -->
+
+{% block content %}
+<div class="container">
+    <!-- Form container -->
+    <form action="{% url 'update_category' category.id|default_if_none:'' %}" method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ category.Name|default_if_none:'' }}" required>
+            <div class="invalid-feedback">
+                Please provide a valid category name.
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required>{{ category.Description|default_if_none:'' }}</textarea>
+            <div class="invalid-feedback">
+                Please provide a description for the category.
+            </div>
+        </div>
+        
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
