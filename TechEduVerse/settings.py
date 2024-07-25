@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'widget_tweaks',
-    'grappelli',
+    # 'grappelli',
     'courses', 
     'django.contrib.admin',
     'django.contrib.auth',
