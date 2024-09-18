@@ -1,12 +1,12 @@
 
  
 
-#TECH-EDU VERSE
-##O n l i n e  S t u d y   P l a t f o r m 
+# TECH-EDU VERSE
+## O n l i n e  S t u d y   P l a t f o r m 
 
 
 
-1.	**Introduction of the Project**
+1.	* Introduction of the Project *
  	In the digital era, where technology is reshaping the landscape of education, the need for accessible and quality online learning resources has never been more pressing. Addressing this crucial need, our project, TechEduVerse, emerges as a beacon of hope for learners across the globe. Developed on the robust Python programming language and leveraging the dynamic Django framework, TechEduVerse is a pioneering web-based platform designed to democratize education by offering a wide range of online courses entirely free of charge.
 
 At the heart of TechEduVerse lies our commitment to breaking down the barriers to education. In a world where educational resources are often gatekept behind hefty fees, we believe in the transformative power of making learning accessible to everyone, regardless of their financial circumstances. Our platform serves as a virtual nexus where curious minds and aspiring professionals can converge to enhance their skills, knowledge, and competencies in various domains, all without the burden of cost.
