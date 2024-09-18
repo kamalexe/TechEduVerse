@@ -105,8 +105,8 @@ TechEduVerse focuses on enhancing learning by integrating curated YouTube conten
 * IDE: VS Code
 
 
- **Screenshots of the Project**
-  -----------------------------
+**Screenshots of the Project**
+-----------------------------
   
  	Home
   ![image](https://github.com/user-attachments/assets/2d3bf5d7-21df-431a-ae7a-24e47d64fe57)
@@ -151,10 +151,10 @@ TechEduVerse focuses on enhancing learning by integrating curated YouTube conten
  
  ![image](https://github.com/user-attachments/assets/289c4a2b-8fe5-4f93-aa3f-c6a1a88f36f0)
 
- **Future Scope**
+**Future Scope**
  --------------
  
- ### Automated Content Curation and Generation
+### Automated Content Curation and Generation
  * Use machine learning to curate and generate new educational content, ensuring the platform stays up-to-date with the latest knowledge and learning methodologies.
 ### Offline Learning Capabilities:
  * Enhance the mobile app with offline learning capabilities, allowing users to download content and access it without an internet connection.
