@@ -149,7 +149,7 @@ TechEduVerse focuses on enhancing learning by integrating curated YouTube conten
 
  	Login
  
- ![image](https://github.com/user-attachments/assets/289c4a2b-8fe5-4f93-aa3f-c6a1a88f36f0)
+![image](https://github.com/user-attachments/assets/289c4a2b-8fe5-4f93-aa3f-c6a1a88f36f0)
 
 **Future Scope**
  --------------
