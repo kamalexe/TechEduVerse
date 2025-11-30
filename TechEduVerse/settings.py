@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,15 +71,31 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'TechEduVerse.wsgi.application'
-
+DATABASE_URL = os.environ.get("DATABASE_URL")
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DATABASE_URL:
+    parsed = urlparse(DATABASE_URL)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": parsed.path.lstrip("/"),
+            "USER": parsed.username,
+            "PASSWORD": parsed.password,
+            "HOST": parsed.hostname,
+            "PORT": parsed.port or "5432",
+            "OPTIONS": {
+                "sslmode": "require",
+            },
+        }
     }
-}
-
+else:
+    # Local fallback (SQLite)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
